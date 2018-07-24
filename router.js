@@ -342,4 +342,7 @@ router.get('/pku/eecs/:type?', require('./routes/pku/eecs'));
 // 机核
 router.get('/gcores/category/:category', require('./routes/gcores/category'));
 
+// ehentai
+router.get('/ehentai/search/:search', require('./routes/ehentai/search'));
+
 module.exports = router;
