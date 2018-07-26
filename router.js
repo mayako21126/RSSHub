@@ -345,4 +345,5 @@ router.get('/gcores/category/:category', require('./routes/gcores/category'));
 // ehentai
 router.get('/ehentai/search/:search', require('./routes/ehentai/search'));
 
+router.get('/ehentai/exSearch/:search', require('./routes/ehentai/exSearch'));
 module.exports = router;

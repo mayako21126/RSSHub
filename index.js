@@ -81,7 +81,9 @@ if (config.cacheType === 'memory') {
 }
 
 // router
-app.use(router.routes()).use(router.allowedMethods());
+app.use(router.routes()).use(router.allowedMethods({
+    // credentials: 'include'
+}));
 
 // connect
 if (config.connect.port) {
