@@ -15,6 +15,7 @@ module.exports = async (ctx) => {
     const asianporn = ctx.query.asianporn || 0;
     const misc = ctx.query.misc || 0;
     const page = ctx.query.page || 0;
+    const key = ctx.query.key || 0;
     let items = [];
     let url = '';
     // ctx.cookies.set('ipb_member_id', '1231018', {
@@ -27,12 +28,15 @@ module.exports = async (ctx) => {
     //     path:'/',
     //     domain:'.exhentai.org'
     // });
-    ctx.state.data = {
-        title: '1',
-        link: 2,
-        description: 3,
-        item: []
-    };
+    if (key === 0) {
+        ctx.state.data = {
+            title: '1',
+            link: 2,
+            description: 3,
+            item: []
+        };
+        return false;
+    }
     for (let i = 0; i <= page; i++) {
         url = `https://exhentai.org/?page=${i}&f_doujinshi=${doujinshi}&f_manga=${manga}&f_artistcg=${artistcg}&f_gamecg=${gamecg}&f_western=${western}&f_non-h=${nonh}&f_imageset=${imageset}&f_cosplay=${cosplay}&f_asianporn=${asianporn}&f_misc=${misc}&f_search=${search}&f_apply=Apply+Filter`;
         const cache = await ctx.cache.get(url);
@@ -42,7 +46,7 @@ module.exports = async (ctx) => {
                 url: url,
                 headers: {
                     'User-Agent': config.ua,
-                    'Cookie':'ipb_member_id=1231018;ipb_pass_hash=f3d7bac7e0cb0b1f1e6fba485bf207b0;igneous=265bbf1c8'
+                    'Cookie':key
                 },
             });
             // console.log('请求了');
